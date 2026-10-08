@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador e Diagnóstico de Redes de Computadores</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Animação de Fundo em Canvas -->
+    <canvas id="network-canvas"></canvas>
+
+    <div class="app-container">
+        <!-- Cabeçalho -->
+        <header class="main-header">
+            <div class="logo">
+                <span class="icon">🌐</span>
+                <div>
+                    <h1>NetDiagnostic Lab</h1>
+                    <p>Simulador e Guia Prático de Resolução de Problemas em Redes</p>
+                </div>
+            </div>
+            <nav class="main-nav">
+                <a href="#cenarios" class="nav-btn active">Cenários Práticos</a>
+                <a href="#terminal-section" class="nav-btn">Terminal Simulado</a>
+                <a href="#comandos" class="nav-btn">Comandos CLI</a>
+                <a href="#quiz" class="nav-btn">Quiz</a>
+            </nav>
+        </header>
+
+        <!-- Seção 1: Cenários de Redes -->
+        <section id="cenarios" class="section-card">
+            <h2> Simulação de Problemas de Rede</h2>
+            <p class="subtitle">Selecione uma situação abaixo para analisar o diagnóstico completo, procedimentos e comandos de solução.</p>
+
+            <div class="scenarios-grid">
+                <button class="scenario-btn active" data-scenario="1">
+                    <span class="scen-icon">🚫</span>
+                    <span>1. Sem Acesso à Internet</span>
+                </button>
+                <button class="scenario-btn" data-scenario="2">
+                    <span class="scen-icon">⚠️</span>
+                    <span>2. Endereço IP Incorreto</span>
+                </button>
+                <button class="scenario-btn" data-scenario="3">
+                    <span class="scen-icon">🔍</span>
+                    <span>3. Problema de DNS</span>
+                </button>
+                <button class="scenario-btn" data-scenario="4">
+                    <span class="scen-icon">🔌</span>
+                    <span>4. Cabo Desconectado / Defeito</span>
+                </button>
+                <button class="scenario-btn" data-scenario="5">
+                    <span class="scen-icon">⚔️</span>
+                    <span>5. Conflito de Endereço IP</span>
+                </button>
+            </div>
+
+            <!-- Painel de Detalhes do Cenário -->
+            <div id="scenario-details" class="scenario-detail-box">
+                <!-- Conteúdo injetado via JavaScript -->
+            </div>
+        </section>
+
+        <!-- Seção 2: Terminal de Diagnóstico Simulado -->
+        <section id="terminal-section" class="section-card">
+            <div class="terminal-header">
+                <h2> Prompt de Comando Simulado (CLI)</h2>
+                <span class="badge">Prática Interativa</span>
+            </div>
+            <p class="subtitle">Execute comandos de rede reais como <code>ipconfig</code>, <code>ping</code>, <code>nslookup</code>, <code>tracert</code>, <code>arp -a</code>, <code>netstat -an</code> para testar a solução.</p>
+
+            <div class="terminal-window">
+                <div class="terminal-topbar">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                    <span class="terminal-title">Prompt de Comando - Diagnóstico TCP/IP</span>
+                </div>
+                <div class="terminal-body" id="terminal-output">
+                    <p>NetDiagnostic CLI OS [Versão 10.0.19045]</p>
+                    <p>(c) Corporação de Redes. Todos os direitos reservados.</p>
+                    <p class="text-muted">Digite 'help' para ver a lista de comandos disponíveis.</p>
+                    <br>
+                </div>
+                <div class="terminal-input-line">
+                    <span class="prompt-symbol">C:\Users\SuporteNetwork&gt;</span>
+                    <input type="text" id="terminal-input" autofocus placeholder="Digite um comando (ex: ping 8.8.8.8 ou ipconfig)...">
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 3: Guia de Comandos -->
+        <section id="comandos" class="section-card">
+            <h2> Ferramentas e Comandos de Diagnóstico</h2>
+            <div class="commands-grid">
+                <div class="cmd-card">
+                    <code>ipconfig / ifconfig</code>
+                    <p>Exibe as configurações de IP, Máscara de Sub-rede e Gateway Padrão das interfaces de rede.</p>
+                    <small>Variações: <code>/all</code>, <code>/release</code>, <code>/renew</code>, <code>/flushdns</code></small>
+                </div>
+                <div class="cmd-card">
+                    <code>ping</code>
+                    <p>Testa a conectividade ICMP e mede a latência (RTT) e perda de pacotes entre dois nós da rede.</p>
+                    <small>Exemplo: <code>ping 8.8.8.8</code> ou <code>ping gateway.local</code></small>
+                </div>
+                <div class="cmd-card">
+                    <code>tracert / traceroute</code>
+                    <p>Rastreia a rota percorrida pelos pacotes até o destino, identificando roteadores intermediários e gargalos.</p>
+                    <small>Exemplo: <code>tracert google.com</code></small>
+                </div>
+                <div class="cmd-card">
+                    <code>nslookup / dig</code>
+                    <p>Consulta os servidores de nomes (DNS) para resolver nomes de domínio em IPs e verificar registros (A, CNAME, MX).</p>
+                    <small>Exemplo: <code>nslookup www.exemplo.com</code></small>
+                </div>
+                <div class="cmd-card">
+                    <code>arp -a</code>
+                    <p>Exibe a tabela de mapeamento do Protocolo ARP (endereços IP correspondentes aos endereços MAC da placa).</p>
+                    <small>Útil para detectar conflitos de IP e envenenamento ARP.</small>
+                </div>
+                <div class="cmd-card">
+                    <code>netstat -an</code>
+                    <p>Exibe todas as conexões de rede ativas (TCP/UDP), portas abertas e o estado das comunicações.</p>
+                    <small>Útil para verificar portas de serviços e conexões suspeitas.</small>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 4: Quiz de Fixação -->
+        <section id="quiz" class="section-card">
+            <h2> Teste Seus Conhecimentos</h2>
+            <p class="subtitle">Responda à questão prática abaixo sobre diagnóstico de redes:</p>
+            <div class="quiz-box">
+                <p class="quiz-question"><strong>Cenário:</strong> Um usuário relata que consegue pingar o IP 8.8.8.8 com sucesso, mas ao tentar acessar "google.com" no navegador, recebe erro de página não encontrada. Qual é a causa mais provável?</p>
+                <div class="quiz-options">
+                    <label class="quiz-option"><input type="radio" name="q1" value="A"> A) O cabo de rede está desconectado.</label>
+                    <label class="quiz-option"><input type="radio" name="q1" value="B"> B) Falha no Servidor DHCP.</label>
+                    <label class="quiz-option"><input type="radio" name="q1" value="C"> C) Problema na resolução de DNS.</label>
+                    <label class="quiz-option"><input type="radio" name="q1" value="D"> D) Conflito de endereço IP com outra máquina.</label>
+                </div>
+                <button id="btn-check-quiz" class="action-btn">Verificar Resposta</button>
+                <div id="quiz-result" class="quiz-result-message"></div>
+            </div>
+        </section>
+
+        <!-- Rodapé -->
+        <footer class="main-footer">
+            <p>Projeto do Curso de Redes de Computadores • Diagnóstico e Solução de Problemas</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
